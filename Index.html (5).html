@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Grand Grunder Hotel — Monrovia, Liberia</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:    #152820;
+    --green-2:  #1e3d2f;
+    --gold:     #C9A84C;
+    --gold-lt:  #e8c97a;
+    --ivory:    #FAF7F2;
+    --ivory-2:  #F0EBE2;
+    --charcoal: #1C1C1C;
+    --muted:    #6B7B74;
+    --ff-disp:  'Cormorant Garamond', Georgia, serif;
+    --ff-body:  'Inter', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-body);
+    background: var(--ivory);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 4vw;
+    height: 72px;
+    background: rgba(21, 40, 32, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    transition: background 0.3s;
+  }
+  .nav-logo {
+    font-family: var(--ff-disp);
+    font-size: 1.45rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-decoration: none;
+  }
+  .nav-logo span { color: #fff; font-weight: 300; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.8); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--gold); color: var(--green);
+    padding: 0.55rem 1.5rem; font-size: 0.72rem;
+    font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-lt); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative; height: 100vh; min-height: 650px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1800&q=85&fit=crop') center/cover no-repeat;
+    transform: scale(1.05);
+    animation: heroZoom 12s ease-out forwards;
+  }
+  @keyframes heroZoom { to { transform: scale(1); } }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(21,40,32,0.55) 0%, rgba(21,40,32,0.2) 50%, rgba(21,40,32,0.75) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; color: #fff; padding: 0 1.5rem;
+    animation: fadeUp 1.4s 0.3s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(30px); } to { opacity:1; transform: none; } }
+  .hero-eyebrow {
+    font-size: 0.68rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem; font-weight: 500;
+  }
+  .hero-title {
+    font-family: var(--ff-disp);
+    font-size: clamp(3.2rem, 8vw, 7.5rem);
+    font-weight: 300; line-height: 1.04;
+    letter-spacing: 0.02em; margin-bottom: 1.6rem;
+  }
+  .hero-title em { font-style: italic; color: var(--gold-lt); }
+  .hero-sub {
+    font-size: 0.85rem; letter-spacing: 0.08em; font-weight: 300;
+    color: rgba(255,255,255,0.82); max-width: 500px; margin: 0 auto 2.8rem;
+    line-height: 1.7;
+  }
+  .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-gold {
+    background: var(--gold); color: var(--green);
+    padding: 0.9rem 2.4rem; font-size: 0.76rem;
+    font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-gold:hover { background: var(--gold-lt); }
+  .btn-outline {
+    border: 1px solid rgba(255,255,255,0.5); color: #fff;
+    padding: 0.9rem 2.4rem; font-size: 0.76rem;
+    font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .scroll-cue {
+    position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.5); font-size: 0.6rem; letter-spacing: 0.25em;
+    text-transform: uppercase; animation: float 2s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+  .scroll-cue svg { width: 20px; opacity: 0.6; }
+
+  /* ── BOOKING BAR ── */
+  .booking-bar {
+    background: var(--green);
+    padding: 1.8rem 4vw;
+    display: flex; gap: 1px; flex-wrap: wrap;
+    align-items: stretch;
+  }
+  .booking-field {
+    flex: 1 1 180px; background: rgba(255,255,255,0.06);
+    padding: 1rem 1.4rem; display: flex; flex-direction: column; gap: 0.3rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .booking-field:last-of-type { border-right: none; }
+  .booking-field label {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500;
+  }
+  .booking-field input, .booking-field select {
+    background: none; border: none; outline: none;
+    color: #fff; font-family: var(--ff-body); font-size: 0.88rem;
+    font-weight: 300; cursor: pointer;
+  }
+  .booking-field select option { background: var(--green-2); color: #fff; }
+  .btn-book {
+    flex: 0 0 auto; background: var(--gold); color: var(--green);
+    border: none; padding: 0 2.8rem; cursor: pointer;
+    font-family: var(--ff-body); font-size: 0.78rem;
+    font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    transition: background 0.2s;
+  }
+  .btn-book:hover { background: var(--gold-lt); }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 7rem 5vw; }
+  .section-eyebrow {
+    font-size: 0.64rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); font-weight: 500; margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--ff-disp);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300; line-height: 1.12; color: var(--green);
+  }
+  .section-title em { font-style: italic; }
+  .section-divider {
+    width: 48px; height: 1px; background: var(--gold); margin: 1.8rem 0;
+  }
+  .section-body {
+    font-size: 0.92rem; line-height: 1.9; color: var(--muted);
+    max-width: 540px; font-weight: 300;
+  }
+
+  /* ── INTRO ── */
+  .intro { background: var(--ivory); }
+  .intro-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center; max-width: 1300px; margin: 0 auto;
+  }
+  .intro-img-wrap { position: relative; }
+  .intro-img {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+  }
+  .intro-img-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--gold); color: var(--green);
+    padding: 1.5rem 1.8rem; text-align: center;
+  }
+  .intro-img-badge .num {
+    font-family: var(--ff-disp); font-size: 3rem;
+    font-weight: 300; line-height: 1;
+  }
+  .intro-img-badge .lbl {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 600; margin-top: 0.3rem;
+  }
+  .intro-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .stat { border-left: 2px solid var(--gold); padding-left: 1rem; }
+  .stat-num {
+    font-family: var(--ff-disp); font-size: 2rem;
+    font-weight: 300; color: var(--green);
+  }
+  .stat-lbl { font-size: 0.7rem; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+
+  /* ── ROOMS ── */
+  .rooms { background: var(--green); }
+  .rooms .section-title { color: #fff; }
+  .rooms .section-body { color: rgba(255,255,255,0.6); }
+  .rooms .section-eyebrow { color: var(--gold-lt); }
+  .rooms-header { max-width: 1300px; margin: 0 auto 4rem; }
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5px;
+    max-width: 1300px; margin: 0 auto;
+  }
+  .room-card { position: relative; overflow: hidden; cursor: pointer; }
+  .room-card:first-child { grid-column: span 2; }
+  .room-img {
+    width: 100%; height: 420px; object-fit: cover;
+    display: block; transition: transform 0.6s ease;
+  }
+  .room-card:first-child .room-img { height: 580px; }
+  .room-card:hover .room-img { transform: scale(1.04); }
+  .room-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(21,40,32,0.9) 0%, transparent 55%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 2rem;
+  }
+  .room-cat {
+    font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .room-name {
+    font-family: var(--ff-disp); font-size: 1.8rem;
+    font-weight: 400; color: #fff; margin-bottom: 0.6rem;
+  }
+  .room-price {
+    font-size: 0.75rem; color: rgba(255,255,255,0.65);
+    letter-spacing: 0.08em;
+  }
+  .room-price strong { color: var(--gold-lt); font-family: var(--ff-disp); font-size: 1.1rem; font-weight: 300; }
+  .room-btn {
+    display: inline-block; margin-top: 1rem;
+    border: 1px solid rgba(201,168,76,0.5); color: var(--gold);
+    padding: 0.5rem 1.4rem; font-size: 0.65rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    text-decoration: none; transition: all 0.2s;
+    width: fit-content;
+  }
+  .room-btn:hover { background: var(--gold); color: var(--green); }
+
+  /* ── AMENITIES ── */
+  .amenities { background: var(--ivory-2); }
+  .amenities-header { max-width: 1300px; margin: 0 auto 4rem; text-align: center; }
+  .amenities-header .section-divider { margin: 1.8rem auto; }
+  .amenities-header .section-body { margin: 0 auto; text-align: left; }
+  .amenities-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 1300px; margin: 0 auto;
+  }
+  .amenity-card {
+    background: #fff; overflow: hidden;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .amenity-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.12); transform: translateY(-4px); }
+  .amenity-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+  .amenity-info { padding: 1.2rem; }
+  .amenity-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+  .amenity-name {
+    font-family: var(--ff-disp); font-size: 1.1rem;
+    font-weight: 500; color: var(--green); margin-bottom: 0.4rem;
+  }
+  .amenity-desc { font-size: 0.75rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ── DINING ── */
+  .dining { background: var(--ivory); }
+  .dining-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; max-width: 1300px; margin: 0 auto;
+  }
+  .dining-imgs {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  }
+  .dining-img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+  .dining-img:first-child { aspect-ratio: auto; grid-column: span 2; height: 260px; }
+  .dining-features { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+  .dining-feat { display: flex; gap: 1rem; align-items: flex-start; }
+  .feat-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--green); display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+  }
+  .feat-text h4 {
+    font-family: var(--ff-disp); font-size: 1rem; font-weight: 500;
+    color: var(--green); margin-bottom: 0.25rem;
+  }
+  .feat-text p { font-size: 0.78rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ── SPA ── */
+  .spa {
+    position: relative; padding: 0; overflow: hidden;
+    min-height: 600px; display: flex; align-items: center;
+  }
+  .spa-bg {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=1800&q=85&fit=crop') center/cover no-repeat;
+  }
+  .spa-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(21,40,32,0.92) 50%, rgba(21,40,32,0.5) 100%);
+  }
+  .spa-content {
+    position: relative; z-index: 2;
+    color: #fff; max-width: 600px; padding: 7rem 5vw;
+  }
+  .spa .section-eyebrow { color: var(--gold-lt); }
+  .spa .section-title { color: #fff; }
+  .spa .section-body { color: rgba(255,255,255,0.65); }
+  .spa-list { list-style: none; margin-top: 2rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .spa-list li {
+    font-size: 0.82rem; color: rgba(255,255,255,0.75); display: flex; gap: 0.75rem;
+    align-items: center; font-weight: 300;
+  }
+  .spa-list li::before { content: ''; width: 20px; height: 1px; background: var(--gold); flex-shrink: 0; }
+
+  /* ── GALLERY STRIP ── */
+  .gallery-strip {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 300px; gap: 2px;
+  }
+  .gallery-strip img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.3s; }
+  .gallery-strip img:hover { opacity: 0.85; }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--green); padding: 6rem 5vw; text-align: center; }
+  .testimonials .section-title { color: #fff; }
+  .testimonials .section-eyebrow { color: var(--gold-lt); }
+  .testimonials .section-divider { margin: 1.8rem auto; }
+  .testi-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; max-width: 1300px; margin: 3rem auto 0;
+  }
+  .testi-card {
+    background: rgba(255,255,255,0.05); padding: 2.2rem;
+    border: 1px solid rgba(201,168,76,0.15); text-align: left;
+  }
+  .testi-stars { color: var(--gold); font-size: 0.8rem; margin-bottom: 1.2rem; letter-spacing: 0.1em; }
+  .testi-quote {
+    font-family: var(--ff-disp); font-size: 1.05rem; font-weight: 300;
+    font-style: italic; color: rgba(255,255,255,0.85); line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .testi-author { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; font-weight: 500; }
+  .testi-origin { font-size: 0.68rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+
+  /* ── LOCATION ── */
+  .location { background: var(--ivory); }
+  .location-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; max-width: 1300px; margin: 0 auto;
+  }
+  .location-img { width: 100%; height: 420px; object-fit: cover; }
+  .location-details { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
+  .loc-item { display: flex; gap: 1.2rem; }
+  .loc-icon {
+    width: 44px; height: 44px; flex-shrink: 0;
+    border: 1px solid var(--gold); display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem; color: var(--gold);
+  }
+  .loc-text strong { display: block; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); margin-bottom: 0.2rem; }
+  .loc-text span { font-size: 0.82rem; color: var(--muted); font-weight: 300; }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--gold); padding: 5rem 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+  }
+  .cta-text {}
+  .cta-title {
+    font-family: var(--ff-disp); font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300; color: var(--green); line-height: 1.1;
+  }
+  .cta-sub { font-size: 0.85rem; color: rgba(21,40,32,0.7); margin-top: 0.5rem; font-weight: 300; }
+  .btn-dark {
+    background: var(--green); color: #fff;
+    padding: 1rem 2.8rem; font-size: 0.78rem;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none; white-space: nowrap; transition: background 0.2s;
+  }
+  .btn-dark:hover { background: var(--green-2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--charcoal); color: rgba(255,255,255,0.55);
+    padding: 4rem 5vw 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; max-width: 1300px; margin: 0 auto 3rem;
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: var(--ff-disp); font-size: 1.5rem;
+    font-weight: 300; color: var(--gold); display: block; margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+  .footer-desc { font-size: 0.78rem; line-height: 1.8; font-weight: 300; }
+  .footer-social { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .soc-icon {
+    width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem; color: rgba(255,255,255,0.5);
+    text-decoration: none; transition: all 0.2s;
+  }
+  .soc-icon:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h5 {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.2rem; font-weight: 500;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .footer-col a { font-size: 0.78rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; font-weight: 300; }
+  .footer-col a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 1.8rem; max-width: 1300px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    font-size: 0.7rem; color: rgba(255,255,255,0.3);
+  }
+  .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .intro-grid, .dining-grid, .location-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .rooms-grid { grid-template-columns: 1fr; }
+    .room-card:first-child { grid-column: auto; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-strip { grid-template-columns: repeat(3, 1fr); }
+    .gallery-strip img:nth-child(4), .gallery-strip img:nth-child(5) { display: none; }
+    .nav-links { display: none; }
+    .intro-img-badge { bottom: 0; right: 0; }
+  }
+  @media (max-width: 600px) {
+    .amenities-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .booking-bar { flex-direction: column; }
+    .btn-book { padding: 1rem; }
+    .cta-banner { flex-direction: column; text-align: center; }
+    .dining-imgs { grid-template-columns: 1fr; }
+    .dining-img:first-child { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">GRAND <span>GRUNDER</span></a>
+  <ul class="nav-links">
+    <li><a href="#rooms">Rooms & Suites</a></li>
+    <li><a href="#amenities">Amenities</a></li>
+    <li><a href="#dining">Dining</a></li>
+    <li><a href="#spa">Spa</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#booking">Reserve Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Monrovia, Liberia &nbsp;·&nbsp; Five Stars &nbsp;·&nbsp; Established 2018</p>
+    <h1 class="hero-title">Grand <em>Grunder</em><br>Hotel</h1>
+    <p class="hero-sub">Where West African warmth meets timeless luxury — on the shores of the Atlantic, in the heart of Monrovia.</p>
+    <div class="hero-btns">
+      <a class="btn-gold" href="#booking">Book Your Stay</a>
+      <a class="btn-outline" href="#rooms">Explore Rooms</a>
+    </div>
+  </div>
+  <div class="scroll-cue">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    Scroll
+  </div>
+</section>
+
+<!-- BOOKING BAR -->
+<div class="booking-bar" id="booking">
+  <div class="booking-field">
+    <label>Check In</label>
+    <input type="date" />
+  </div>
+  <div class="booking-field">
+    <label>Check Out</label>
+    <input type="date" />
+  </div>
+  <div class="booking-field">
+    <label>Guests</label>
+    <select>
+      <option>1 Adult</option>
+      <option>2 Adults</option>
+      <option>2 Adults, 1 Child</option>
+      <option>2 Adults, 2 Children</option>
+    </select>
+  </div>
+  <div class="booking-field">
+    <label>Room Type</label>
+    <select>
+      <option>Any Room</option>
+      <option>Deluxe Room</option>
+      <option>Ocean Suite</option>
+      <option>Presidential Suite</option>
+    </select>
+  </div>
+  <button class="btn-book">Check Availability</button>
+</div>
+
+<!-- INTRO -->
+<section class="intro" id="about">
+  <div class="intro-grid">
+    <div class="intro-img-wrap">
+      <img class="intro-img"
+        src="https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=800&q=85&fit=crop"
+        alt="Grand Grunder Hotel Exterior" loading="lazy" />
+      <div class="intro-img-badge">
+        <div class="num">5★</div>
+        <div class="lbl">Luxury<br>Resort</div>
+      </div>
+    </div>
+    <div class="intro-text">
+      <p class="section-eyebrow">A Liberian Landmark</p>
+      <h2 class="section-title">The Standard of<br><em>Unrivalled Elegance</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-body">Perched along the Atlantic coastline of Monrovia, Grand Grunder Hotel redefines hospitality in West Africa. Our 168 rooms and suites, curated dining experiences, and world-class spa draw discerning travellers who demand nothing less than extraordinary — wrapped in the genuine warmth of Liberian culture.</p>
+      <div class="intro-stats">
+        <div class="stat">
+          <div class="stat-num">168</div>
+          <div class="stat-lbl">Rooms & Suites</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4</div>
+          <div class="stat-lbl">Fine Dining Venues</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3,200m²</div>
+          <div class="stat-lbl">Spa & Wellness</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-lbl">Concierge Service</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="rooms" id="rooms">
+  <div class="rooms-header">
+    <p class="section-eyebrow">Accommodation</p>
+    <h2 class="section-title">Rooms <em>&amp; Suites</em></h2>
+    <div class="section-divider"></div>
+    <p class="section-body">Each of our 168 rooms and suites is a sanctuary of calm — designed with locally inspired textures, premium linens, and panoramic Atlantic views.</p>
+  </div>
+  <div class="rooms-grid">
+    <!-- Presidential Suite -->
+    <div class="room-card">
+      <img class="room-img"
+        src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1000&q=85&fit=crop"
+        alt="Presidential Suite" loading="lazy" />
+      <div class="room-overlay">
+        <div class="room-cat">Top Floor</div>
+        <div class="room-name">Presidential Suite</div>
+        <div class="room-price">From <strong>$1,200</strong> / night</div>
+        <a class="room-btn" href="#booking">Book Suite</a>
+      </div>
+    </div>
+    <!-- Ocean Suite -->
+    <div class="room-card">
+      <img class="room-img"
+        src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&q=85&fit=crop"
+        alt="Ocean Suite" loading="lazy" />
+      <div class="room-overlay">
+        <div class="room-cat">Premium</div>
+        <div class="room-name">Ocean Suite</div>
+        <div class="room-price">From <strong>$650</strong> / night</div>
+        <a class="room-btn" href="#booking">Book Suite</a>
+      </div>
+    </div>
+    <!-- Deluxe Double -->
+    <div class="room-card">
+      <img class="room-img"
+        src="https://images.unsplash.com/photo-1631049552057-403cdb8f0658?w=800&q=85&fit=crop"
+        alt="Deluxe Double Room" loading="lazy" />
+      <div class="room-overlay">
+        <div class="room-cat">Superior</div>
+        <div class="room-name">Deluxe Double</div>
+        <div class="room-price">From <strong>$320</strong> / night</div>
+        <a class="room-btn" href="#booking">Book Room</a>
+      </div>
+    </div>
+    <!-- Junior Suite -->
+    <div class="room-card">
+      <img class="room-img"
+        src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&q=85&fit=crop"
+        alt="Junior Suite" loading="lazy" />
+      <div class="room-overlay">
+        <div class="room-cat">Classic</div>
+        <div class="room-name">Junior Suite</div>
+        <div class="room-price">From <strong>$480</strong> / night</div>
+        <a class="room-btn" href="#booking">Book Suite</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section class="amenities" id="amenities">
+  <div class="amenities-header">
+    <p class="section-eyebrow">Facilities</p>
+    <h2 class="section-title">World‑Class <em>Amenities</em></h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="amenities-grid">
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80&fit=crop"
+        alt="Infinity Pool" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">🏊</div>
+        <div class="amenity-name">Infinity Pool</div>
+        <p class="amenity-desc">Three tiered pools overlooking the Atlantic Ocean, open from sunrise to midnight with poolside butler service.</p>
+      </div>
+    </div>
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80&fit=crop"
+        alt="Fitness Centre" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">💪</div>
+        <div class="amenity-name">Fitness Centre</div>
+        <p class="amenity-desc">State-of-the-art equipment, personal trainers, and ocean-view yoga studios — open 24 hours.</p>
+      </div>
+    </div>
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80&fit=crop"
+        alt="Spa & Wellness" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">🌿</div>
+        <div class="amenity-name">Grunder Spa</div>
+        <p class="amenity-desc">A 3,200m² sanctuary offering traditional Liberian botanical treatments alongside global wellness therapies.</p>
+      </div>
+    </div>
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1505275350441-83dcda8eeef5?w=600&q=80&fit=crop"
+        alt="Private Beach" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">🏖️</div>
+        <div class="amenity-name">Private Beach</div>
+        <p class="amenity-desc">600 metres of exclusive Atlantic shoreline with sun loungers, cabanas, and watersport rentals.</p>
+      </div>
+    </div>
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?w=600&q=80&fit=crop"
+        alt="Business Centre" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">💼</div>
+        <div class="amenity-name">Business Centre</div>
+        <p class="amenity-desc">Eight fully equipped meeting rooms, a 400-seat grand ballroom, and high-speed fibre connectivity throughout.</p>
+      </div>
+    </div>
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600&q=80&fit=crop"
+        alt="Kids Club" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">🎨</div>
+        <div class="amenity-name">Kids' Club</div>
+        <p class="amenity-desc">A supervised creative play zone for ages 3–12, with art, cooking, and cultural storytelling programmes.</p>
+      </div>
+    </div>
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1587655949282-5cbe3af3f8cd?w=600&q=80&fit=crop"
+        alt="Tennis Courts" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">🎾</div>
+        <div class="amenity-name">Tennis Courts</div>
+        <p class="amenity-desc">Four floodlit clay and hard courts with professional coaching available for all skill levels.</p>
+      </div>
+    </div>
+
+    <div class="amenity-card">
+      <img class="amenity-img"
+        src="https://images.unsplash.com/photo-1560624052-449f5ddf0c31?w=600&q=80&fit=crop"
+        alt="Concierge Lounge" loading="lazy" />
+      <div class="amenity-info">
+        <div class="amenity-icon">🛎️</div>
+        <div class="amenity-name">Concierge Lounge</div>
+        <p class="amenity-desc">Exclusive access to priority check-in, private dining reservations, excursion planning, and airport transfers.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section style="background:var(--ivory-2); padding:7rem 5vw;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1300px;margin:0 auto;">
+    <div style="position:relative;">
+      <img src="https://images.unsplash.com/photo-1560250097-0dc05ae80e88?w=700&q=85&fit=crop&crop=face"
+        alt="Bruce Wenneh — Founder" loading="lazy"
+        style="width:100%;aspect-ratio:3/4;object-fit:cover;display:block;" />
+      <div style="position:absolute;bottom:2rem;left:-2rem;background:var(--green);padding:1.6rem 2rem;">
+        <div style="font-family:var(--ff-disp);font-size:1.5rem;font-weight:300;color:var(--gold);line-height:1.2;">Bruce<br>Wenneh</div>
+        <div style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-top:0.4rem;font-weight:500;">Founder &amp; Chairman</div>
+      </div>
+    </div>
+    <div>
+      <p class="section-eyebrow">A Vision for Liberia</p>
+      <h2 class="section-title">A Message from<br><em>Our Founder</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-body" style="max-width:none;margin-bottom:1.4rem;">
+        "I founded Grand Grunder with a singular conviction: that Liberia deserved a hotel the whole world would travel to — not just pass through. Our land has beauty, warmth, and culture that rival any destination on earth, and my mission was to build a stage worthy of it."
+      </p>
+      <p class="section-body" style="max-width:none;margin-bottom:2rem;">
+        Bruce Wenneh is a Liberian entrepreneur, philanthropist, and hospitality visionary whose career spans infrastructure development, tourism investment, and community empowerment across West Africa. Grand Grunder Hotel is his landmark achievement — a property that has redefined five-star standards on the continent and created over 400 direct jobs for Liberians.
+      </p>
+      <div style="border-left:2px solid var(--gold);padding-left:1.2rem;">
+        <p style="font-family:var(--ff-disp);font-size:1.15rem;font-style:italic;color:var(--green);font-weight:300;line-height:1.7;">
+          "We do not simply offer rooms. We offer Liberia — her people, her spirit, her future."
+        </p>
+        <p style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:0.8rem;font-weight:500;">— Bruce Wenneh</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DINING -->
+<section class="dining" id="dining">
+  <div class="dining-grid">
+    <div class="dining-imgs">
+      <img class="dining-img"
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85&fit=crop"
+        alt="Fine Dining Restaurant" loading="lazy" />
+      <img class="dining-img"
+        src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=500&q=80&fit=crop"
+        alt="Cocktail Bar" loading="lazy" />
+      <img class="dining-img"
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&q=80&fit=crop"
+        alt="Pool Bar" loading="lazy" />
+    </div>
+    <div>
+      <p class="section-eyebrow">Culinary Experiences</p>
+      <h2 class="section-title">Four Venues,<br><em>One Philosophy</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-body">From our Michelin-calibre Atlantic Restaurant to the laid-back Sunset Beach Bar, every dining experience at Grand Grunder is a celebration of West African flavour elevated to global standards.</p>
+      <div class="dining-features">
+        <div class="dining-feat">
+          <div class="feat-icon">🍽️</div>
+          <div class="feat-text">
+            <h4>The Atlantic Restaurant</h4>
+            <p>Contemporary European and West African fusion. Dress code smart-casual. Open for dinner only.</p>
+          </div>
+        </div>
+        <div class="dining-feat">
+          <div class="feat-icon">🌊</div>
+          <div class="feat-text">
+            <h4>Sunset Beach Bar</h4>
+            <p>All-day dining with barefoot luxury. Fresh seafood, tropical cocktails, live acoustic evenings.</p>
+          </div>
+        </div>
+        <div class="dining-feat">
+          <div class="feat-icon">☕</div>
+          <div class="feat-text">
+            <h4>The Grunder Lounge</h4>
+            <p>Afternoon teas, artisan coffee, light bites, and curated spirits in an air-conditioned sanctuary.</p>
+          </div>
+        </div>
+        <div class="dining-feat">
+          <div class="feat-icon">🍳</div>
+          <div class="feat-text">
+            <h4>Garden Terrace Bistro</h4>
+            <p>All-day breakfast and lunch surrounded by tropical gardens and Atlantic breezes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPA -->
+<section class="spa" id="spa">
+  <div class="spa-bg"></div>
+  <div class="spa-overlay"></div>
+  <div class="spa-content">
+    <p class="section-eyebrow">Grunder Spa & Wellness</p>
+    <h2 class="section-title">Restore.<br><em>Renew. Revive.</em></h2>
+    <div class="section-divider"></div>
+    <p class="section-body">Our 3,200m² spa weaves together West African botanical wisdom and globally renowned wellness traditions. Each treatment is a journey — from the body to the soul.</p>
+    <ul class="spa-list">
+      <li>Traditional Liberian Shea & Palm Rituals</li>
+      <li>Hammam Steam & Exfoliation Therapies</li>
+      <li>Couples' Massage & Private Ceremony Suites</li>
+      <li>Hydrotherapy Pools & Ice Chambers</li>
+      <li>Meditation Gardens & Sound Healing Sessions</li>
+      <li>In-suite Spa Service Available</li>
+    </ul>
+    <a class="btn-gold" href="#booking" style="display:inline-block;margin-top:2.5rem;">Book a Treatment</a>
+  </div>
+</section>
+
+<!-- GALLERY STRIP -->
+<div class="gallery-strip">
+  <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=500&q=80&fit=crop" alt="Hotel Gallery 1" loading="lazy" />
+  <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=500&q=80&fit=crop" alt="Hotel Gallery 2" loading="lazy" />
+  <img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=500&q=80&fit=crop" alt="Hotel Gallery 3" loading="lazy" />
+  <img src="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?w=500&q=80&fit=crop" alt="Hotel Gallery 4" loading="lazy" />
+  <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?w=500&q=80&fit=crop" alt="Hotel Gallery 5" loading="lazy" />
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p class="section-eyebrow">Guest Stories</p>
+  <h2 class="section-title">What Our <em>Guests Say</em></h2>
+  <div class="section-divider"></div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"Stepping into Grand Grunder is like the world slows down. The staff remember your name from the first morning and the ocean view from our suite was simply breathtaking."</p>
+      <div class="testi-author">James & Patricia Osei</div>
+      <div class="testi-origin">Accra, Ghana</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"The spa treatments incorporating local botanicals were unlike anything I've experienced in London or Dubai. This hotel truly has a soul."</p>
+      <div class="testi-author">Sophia Mensah-Clarke</div>
+      <div class="testi-origin">London, United Kingdom</div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-quote">"We hosted our regional conference here. The ballroom, the food, the seamless AV — everything exceeded what I've experienced at European five-star properties."</p>
+      <div class="testi-author">Emmanuel Kollie</div>
+      <div class="testi-origin">Lagos, Nigeria</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+  <div class="location-grid">
+    <div>
+      <p class="section-eyebrow">Location</p>
+      <h2 class="section-title">Heart of <em>Monrovia</em></h2>
+      <div class="section-divider"></div>
+      <p class="section-body">Situated on the Atlantic waterfront of Sinkor, Monrovia, Grand Grunder places you moments from the capital's business district, embassies, and cultural landmarks — with the ocean always in view.</p>
+      <div class="location-details">
+        <div class="loc-item">
+          <div class="loc-icon">📍</div>
+          <div class="loc-text">
+            <strong>Address</strong>
+            <span>Cement Hill Junction, ELWA Road<br>SKD Sports Complex Community<br>Monrovia, Liberia</span>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">✈️</div>
+          <div class="loc-text">
+            <strong>Airport Transfer</strong>
+            <span>Approximately 40 minutes from Roberts International Airport (ROB) — complimentary for suite guests</span>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">🏟️</div>
+          <div class="loc-text">
+            <strong>Nearby Landmarks</strong>
+            <span>SKD Sports Complex · ELWA Junction · Paynesville City Center · Waterside Market — all within minutes</span>
+          </div>
+        </div>
+        <div class="loc-item">
+          <div class="loc-icon">📞</div>
+          <div class="loc-text">
+            <strong>Reservations</strong>
+            <span>+231 777 900 100 &nbsp;·&nbsp; reservations@grandgrunder.com</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <img class="location-img"
+      src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=85&fit=crop"
+      alt="Monrovia coastline" loading="lazy" />
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" id="contact">
+  <div class="cta-text">
+    <h2 class="cta-title">Ready to Experience<br><em>Grand Grunder?</em></h2>
+    <p class="cta-sub">Reserve directly for our best rate guarantee and complimentary welcome amenities.</p>
+  </div>
+  <a class="btn-dark" href="#booking">Reserve Your Stay</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <span class="footer-logo">Grand Grunder Hotel</span>
+      <p class="footer-desc">West Africa's most distinguished address. Cement Hill Junction, ELWA Road, SKD Sports Complex Community, Monrovia, Liberia.</p>
+      <div class="footer-social">
+        <a class="soc-icon" href="#" aria-label="Facebook">f</a>
+        <a class="soc-icon" href="#" aria-label="Instagram">in</a>
+        <a class="soc-icon" href="#" aria-label="Twitter">𝕏</a>
+        <a class="soc-icon" href="#" aria-label="LinkedIn">li</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Stay</h5>
+      <ul>
+        <li><a href="#rooms">Rooms & Suites</a></li>
+        <li><a href="#rooms">Presidential Suite</a></li>
+        <li><a href="#rooms">Ocean Suite</a></li>
+        <li><a href="#booking">Reservations</a></li>
+        <li><a href="#">Special Offers</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Experience</h5>
+      <ul>
+        <li><a href="#amenities">Amenities</a></li>
+        <li><a href="#dining">Dining</a></li>
+        <li><a href="#spa">Spa & Wellness</a></li>
+        <li><a href="#amenities">Business Centre</a></li>
+        <li><a href="#amenities">Events & Weddings</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Information</h5>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Grand Grunder Hotel, Monrovia, Liberia. All rights reserved.</span>
+    <span>Founded by <strong style="color:var(--gold);font-weight:500;">Bruce Wenneh</strong> &nbsp;·&nbsp; <a href="#">Terms of Service</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
